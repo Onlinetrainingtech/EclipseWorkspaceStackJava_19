@@ -1,0 +1,17 @@
+
+public class Demo 
+{
+    void get1()
+    {
+    	System.out.println("Get1 function..");
+    }
+    void get2()
+    {
+    	System.out.println("Get2 function..");
+    }
+	public static void main(String[] args) {
+		
+
+	}
+
+}
