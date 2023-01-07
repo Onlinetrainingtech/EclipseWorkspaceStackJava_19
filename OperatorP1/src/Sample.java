@@ -15,6 +15,20 @@ class Demo
 		System.out.println("Equal::"+(a1==b1));
 		System.out.println("NotEqual::"+(a1!=b1));
 	}
+	void logicalOperator()
+	{
+		int a2=200,b2=300;
+		System.out.println("LogicalAND::"+((a2<b2)&&(b2>a2)));
+		System.out.println("LogicalOR::"+((a2>b2)||(b2>a2)));
+	}
+	void bitwiseoperator()
+	{
+		int a=2,b=3;
+		System.out.println("BitwiseAND::"+(a&b));
+		System.out.println("BitWiseOR::"+(a|b));
+		System.out.println("LeftShift::"+(a<<1));
+		System.out.println("Rightshift::"+(a>>1));
+	}
 }
 public class Sample {
 
@@ -22,7 +36,9 @@ public class Sample {
 		
 		Demo t1=new Demo();
 		//t1.ArithmeticOperator();
-		t1.relationalOperator();
+		//t1.relationalOperator();
+		//t1.logicalOperator();
+		t1.bitwiseoperator();
 
 	}
 
