@@ -4,8 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
 
 public class ProjectDetails extends JFrame {
 
@@ -63,11 +70,54 @@ public class ProjectDetails extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("AddProduct");
+		final JButton btnNewButton = new JButton("AddProduct");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				try
+				{
+					String p1=textField.getText();
+					String p2=textField_1.getText();
+					String str2="insert into product values('"+p1+"','"+p2+"')";
+					Class.forName("org.h2.Driver");
+					Connection conn=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/javab19","sa","");
+					Statement stmt=conn.createStatement();
+					stmt.executeUpdate(str2);
+					JOptionPane.showMessageDialog(btnNewButton,"Inserted..");
+				}
+				catch(Exception t)
+				{
+					System.out.println(t);
+				}
+			}
+		});
 		btnNewButton.setBounds(35, 215, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Search");
+		final JButton btnNewButton_1 = new JButton("Search");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				try
+				{
+					String p1=textField.getText();
+					String str3="select * from product where pid='"+p1+"'";
+					Class.forName("org.h2.Driver");
+					Connection conn=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/javab19","sa","");
+					Statement stmt=conn.createStatement();
+					ResultSet rs=stmt.executeQuery(str3);
+					rs.next();
+					String t1=rs.getString(2);
+					textField_1.setText(t1);
+					JOptionPane.showMessageDialog(btnNewButton_1,"Searching....");
+					
+				}
+				catch(Exception t)
+				{
+					System.out.println(t);
+				}
+			}
+		});
 		btnNewButton_1.setBounds(165, 215, 89, 23);
 		contentPane.add(btnNewButton_1);
 		
